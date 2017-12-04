@@ -2,23 +2,35 @@
 
 Simple shimmering effect in React Native. Based on [Shimmer](https://github.com/facebook/Shimmer)/[shimmer-android](https://github.com/facebook/shimmer-android).
 
+Forked from https://github.com/oblador/react-native-shimmer to play nicely with other code in the
+same Xcode project that is also dependent on the upstream Shimmer library (avoiding code duplication
+build errors on iOS/Xcode). It does so by removing the git submodule for upstream Shimmer, instead
+depending on it via `podspec` config.
+
 ![Shimmer](https://github.com/facebook/Shimmer/blob/master/shimmer.gif?raw=true)
 
 ## Installation
 
-`$ yarn add react-native-shimmer`
+`$ npm install --save git://github.com/humandx/react-native-shimmer.git`
 
-### Option: With `react-native link`
+### Installation for iOS
 
-`$ react-native link react-native-shimmer`
+See notes above for why installation via [CocoaPods](https://cocoapods.org/) is required. To
+install, add the following to your `Podfile` and run `pod update`:
 
-### Option: Manually
+```
+pod 'react-native-shimmer', :path => 'node_modules/react-native-shimmer'
+```
 
-#### iOS
+#### Installation for Android
 
-Add `ios/RNShimmer.xcodeproj` to **Libraries** and add `libRNShimmer.a` to **Link Binary With Libraries** under **Build Phases**. [More info and screenshots about how to do this is available in the React Native documentation](http://facebook.github.io/react-native/docs/linking-libraries-ios.html#content).
+Unfortunately, requiring the `pod` approach above for iOS makes things a little less convenient for
+Android. There are 2 options:
 
-#### Android
+1. Run `react-native link react-native-shimmer`, which will link everything for Android. However,
+   you then need to manually remove the changes made by this command to the entire `iOS/` tree.
+
+2. Install manually as below for Android:
 
 * Edit `android/settings.gradle` to look like this (without the +):
 
@@ -68,13 +80,6 @@ package com.myapp;
 }
 ```
 
-### Option: With [CocoaPods](https://cocoapods.org/)
-
-Add the following to your `Podfile` and run `pod update`:
-
-```
-pod 'react-native-shimmer', :path => 'node_modules/react-native-shimmer'
-```
 
 ## Usage
 
@@ -106,4 +111,4 @@ import Shimmer from 'react-native-shimmer';
 
 ## License
 
-[MIT License](http://opensource.org/licenses/mit-license.html). Shimmer is under BSD license. © Joel Arvidsson 2016 - present
+[MIT License](http://opensource.org/licenses/mit-license.html).
