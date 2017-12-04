@@ -10,10 +10,11 @@ Pod::Spec.new do |s|
   s.author          = { "Joel Arvidsson" => "joel@oblador.se" }
   s.summary         = 'Simple shimmering effect for React Native.'
   s.source          = { :git => 'https://github.com/oblador/react-native-shimmer.git', :tag => "v#{s.version}" }
-  s.source_files    = 'ios/{,Shimmer/FBShimmering/}*.{h,m}'
+  s.source_files    = 'ios/*.{h,m}'
   s.preserve_paths  = "**/*.js"
   s.requires_arc    = true
   s.platform        = :ios, "7.0"
 
   s.dependency 'React'
+  s.dependency 'Shimmer'
 end
